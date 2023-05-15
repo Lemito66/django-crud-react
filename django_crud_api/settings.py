@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Quien puede hacer peticiones a la API
 # Cors autherization
 CORS_ALLOWED_ORIGINS = [
-    
+    "http://localhost:5173",
 ]
 
 # Configuracion de rest_framework for documentation
