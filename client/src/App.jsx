@@ -11,7 +11,6 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Navigate to="/tasks" />} />
-          <Route path="/" element={<TaskPage />} />
           <Route path="/tasks" element={<TaskPage />} />
           <Route path="/task-create" element={<TaskFormPage />} />
         </Routes>
