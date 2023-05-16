@@ -15,13 +15,13 @@ export const createTask = (task) => {
 };
 
 export const updateTask = (id, task) => {
-    return TASKAPI.put(`/${id}/`, task);
+    return TASKAPI.put(`/${id}`, task);
 };
 
 export const deleteTask = (id) => {
-    return TASKAPI.delete(`/${id}/`);
+    return TASKAPI.delete(`/${id}`);
 }
 
 export const getTask = (id) => {
-    return TASKAPI.get(`/${id}/`);
+    return TASKAPI.get(`/${id}`);
 }
