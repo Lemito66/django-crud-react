@@ -1,19 +1,58 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { createTask } from "../../api/tasks.api";
-import { useNavigate } from "react-router-dom";
+import { createTask, deleteTask, updateTask, getTask } from "../../api/tasks.api";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 
 export function TaskFormPage() {
+
+  useEffect(() => {
+    async function loadTask () {
+      if (params.id){
+        console.log("Obteniendo Datos")
+        const {data: {title, description}} = await getTask(params.id)
+        //console.log(data);
+        setValue("title", title)
+        setValue("description", description)
+
+      }
+    }
+    loadTask();
+
+  }, []);
+
+  const [task, setTask] = useState([]);
+
+
   // yup y zod son librerias para validar formularios
-  const { register, handleSubmit, formState:{errors} } = useForm();
+  const { register, handleSubmit, formState:{errors}, setValue } = useForm();
 
   const navigate = useNavigate();
+  const params = useParams();
+  //console.log(params)
 
   // HandleSubmit es una función que recibe los datos del formulario y los valida
   const onSubmit =  handleSubmit(async data => {
-    await createTask(data);
+    /* await createTask(data);
+    navigate("/tasks"); */
+    if(params.id){
+      //console.log("actualizando")
+      updateTask(params.id, data);
+    }else{
+      await createTask(data);
+      
+    }
     navigate("/tasks");
   });
+
+  const deleteTaskById = async ()=> {
+    const accepted = window.confirm("¿Está seguro de eliminar esta tarea?");
+    if(accepted){
+      await deleteTask(params.id);
+      navigate("/tasks");
+  }
+  };
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -33,6 +72,7 @@ export function TaskFormPage() {
         {errors.done && <span>El estado es requerido</span>} */}
         <button>Guardar</button>
       </form>
+      { params.id && <button onClick={deleteTaskById}>Eliminar</button> }
     </div>
   );
 }
