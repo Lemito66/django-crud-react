@@ -16,7 +16,7 @@ export function TaskList() {
   }, []);
 
   return (
-    <div>
+    <div className="grid grid-cols-3 gap-3">
       {tasks.map(({id, title, description, done}) => {
         return (
           <TaskCard
