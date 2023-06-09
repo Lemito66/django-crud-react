@@ -15,7 +15,7 @@ export const createTask = (task) => {
 };
 
 export const updateTask = (id, task) => {
-    return TASKAPI.put(`/${id}`, task);
+    return TASKAPI.put(`/${id}/`, task);
 };
 
 export const deleteTask = (id) => {
@@ -23,5 +23,5 @@ export const deleteTask = (id) => {
 }
 
 export const getTask = (id) => {
-    return TASKAPI.get(`/${id}`);
+    return TASKAPI.get(`/${id}/`);
 }
