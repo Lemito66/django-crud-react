@@ -1,14 +1,17 @@
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-export function TaskCard({id, title, description, done}){
-    const navigate = useNavigate();
-    return(
-        <div style={{background: "#black"}} onClick={()=>{
-            navigate(`/tasks/${id}`);
-        }}>
-            <h1>{title}</h1>
-            <p>{description}</p>
-            <p>{done}</p>
-          </div>
-    );
+export function TaskCard({ id, title, description, done }) {
+  const navigate = useNavigate();
+  return (
+    <div
+      className="bg-zinc-800 p-3 hover:bg-zinc-700 hover:cursor-pointer"
+      onClick={() => {
+        navigate(`/tasks/${id}`);
+      }}
+    >
+      <h1 className="font-bold uppercase">{title}</h1>
+      <p className="text-slate-400">{description}</p>
+      <p>{done}</p>
+    </div>
+  );
 }
